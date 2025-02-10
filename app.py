@@ -1,19 +1,39 @@
 import gradio as gr
+from huggingface_hub import InferenceClient
 
 # exemple : https://github.com/blancsw/deep_4_all/blob/main/tgi_demo/app.py
 
+client = InferenceClient("https://api-inference.huggingface.co/models/Gor-bepis/fact-checker-bfmtg-v1", 
+                         token="NOPE")
+
 
 def chat(input: str, history: list[tuple[str, str]]):
-    resp = "T'as gueule, " + input[::-1]
-    input = input.lower()
+    messages = []
 
-    if input == "oui":
-        resp = "non"
+    # gestion de l'historique
+    for couple in history:
+        messages.append({"role": couple["role"], "content": couple["content"]})
 
-    # history.append({"role": "user", "content": input})
-    # history.append({"role": "assistant", "content": resp})
+    # resp = input[::-1]
+    
+    messages.append({"role": "user", "content": input})
 
-    return resp
+    chat_completion = client.chat.completions.create(
+        model="Gor-bepis/fact-checker-bfmtg-v1",
+        stream=True,
+        messages=messages,
+        max_tokens=1024
+    )
+
+    partial_message = ""
+    for token in chat_completion:
+        content = token.choices[0].delta.content
+        if token.choices[0].finish_reason is not None:
+            break
+        partial_message += content
+        yield partial_message
+
+    # return resp
 
 with gr.Blocks(theme=gr.themes.Soft(primary_hue="blue", secondary_hue="teal"), title="BFMTG") as interface:
     gr.ChatInterface(
