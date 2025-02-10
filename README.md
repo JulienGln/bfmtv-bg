@@ -11,7 +11,7 @@ Lien vers le sujet => [05-huggingface-transformers.ipynb](https://github.com/bla
 ## L'application
 L'application se présente sous la forme d'une interface de chat textuel, similaire aux LLMs actuels tels que ChatGPT, Le Chat etc.
 
-Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://www.gradio.app/)
+Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://www.gradio.app/).
 
 ### Dataset
 [FakeNews](https://huggingface.co/datasets/IJUN/FakeNews)
@@ -24,5 +24,8 @@ Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://ww
 
 ### Fine-tuning
 ### Déploiement
+Le projet est poussé sur un dépôt Hugging Face : [Gor-bepis/fact-checker-bfmtg-v1](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v1)
+
+L'API d'Inférence ne semble pas marché cependant, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
 
 ## Conclusion
