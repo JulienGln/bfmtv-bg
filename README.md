@@ -9,7 +9,7 @@ Lien vers le sujet => [05-huggingface-transformers.ipynb](https://github.com/bla
 - Julien GALERNE ([@JulienGln](https://github.com/JulienGln))
 
 ## L'application
-L'application se présente sous la forme d'une interface de chat textuel, similaire aux LLM actuels tesl que ChatGPT, Le Chat etc.
+L'application se présente sous la forme d'une interface de chat textuel, similaire aux LLMs actuels tels que ChatGPT, Le Chat etc.
 
 Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://www.gradio.app/)
 
