@@ -16,6 +16,8 @@ L'application se présente sous la forme d'une interface de chat textuel, simila
 Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://www.gradio.app/).
 Le code de l'interface est disponible dans le fichier [app.py](./app.py) et utilise la version 2 de notre modèle.
 
+Les requêtes sont formulées au chatbot en anglais.
+
 ### Dataset
 #### Dataset 1
 [FakeNews](https://huggingface.co/datasets/IJUN/FakeNews)
@@ -29,7 +31,7 @@ Le code de l'interface est disponible dans le fichier [app.py](./app.py) et util
 #### Dataset 2
 [LargeFakeNews](https://huggingface.co/datasets/IJUN/LargeFakeNews)
 
-Ce dataset est fait par le même auteur que le premier mias contient bien plus de lignes (plus de 5000 contre environ 300 pour le premier)
+Ce dataset est fait par le même auteur que le premier mais contient bien plus de lignes (plus de 5000 contre environ 300 pour le premier).
 
 | **input** (*string*) | **instruct** (*string*) | **output** (*string*) |
 |----------------------|-------------------------|-----------------------|
@@ -48,7 +50,7 @@ model.push_to_hub("Gor-bepis/fact-checker-bfmtg-v2")
 tokenizer.push_to_hub("Gor-bepis/fact-checker-bfmtg-v2")
 ```
 
-L'API d'Inférence ne semble pas marcher cependant, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
+L'API d'Inférence ne semble cependant pas marcher, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
 
 ### Fine-tuning
 Le modèle **V1** est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-1).
