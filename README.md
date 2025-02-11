@@ -18,6 +18,10 @@ Le code de l'interface est disponible dans le fichier [app.py](./app.py) et util
 
 Les requêtes sont formulées au chatbot en anglais.
 
+Pour lancer l'application :
+- exécuter le fichier [app.py](./app.py) avec Python (`py app.py`)
+- se rendre à l'URL suivante : http://127.0.0.1:7860
+
 ### Dataset
 #### Dataset 1
 [FakeNews](https://huggingface.co/datasets/IJUN/FakeNews)
