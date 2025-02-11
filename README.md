@@ -31,7 +31,7 @@ Les requêtes sont formulées au chatbot en anglais.
 #### Dataset 2
 [LargeFakeNews](https://huggingface.co/datasets/IJUN/LargeFakeNews)
 
-Ce dataset est fait par le même auteur que le premier mais contient bien plus de lignes (plus de 5000 contre environ 300 pour le premier).
+Ce dataset est fait par le même auteur que le premier mais contient bien plus de lignes (4998 contre environ 362 pour le premier).
 
 | **input** (*string*) | **instruct** (*string*) | **output** (*string*) |
 |----------------------|-------------------------|-----------------------|
@@ -53,9 +53,11 @@ tokenizer.push_to_hub("Gor-bepis/fact-checker-bfmtg-v2")
 L'API d'Inférence ne semble cependant pas marcher, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
 
 ### Fine-tuning
-Le modèle **V1** est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-1).
+Le modèle se base sur [SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct). Nous avons utilisé Kaggle pour l'entraînement du modèle, avec le GPU P100
 
-Le modèle **V2** est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-2). Nous avons baissé le learning rate à 0.0001 car le modèle avait tendance à sur-apprendre. Nous avons également augmenté le nombre d'étapes, de 1000 à 1500 pour améliorer ses performances.
+Le modèle **V1** est ajusté (fine-tuning) à partir du dataset 1 décrit [ci-dessus](#dataset-1).
+
+Le modèle **V2** est ajusté (fine-tuning) à partir du dataset 2 décrit [ci-dessus](#dataset-2). Nous avons baissé le learning rate à 0.0001 car le modèle avait tendance à sur-apprendre. Nous avons également augmenté le nombre d'étapes, de 1000 à 1500 pour améliorer ses performances.
 
 Le code du fine-tuning pour les modèles sont disponibles dans les notebook :
 - V1 : [bftmtv-bg-kaggle](./bfmtv-bg-kaggle.ipynb)
@@ -63,9 +65,8 @@ Le code du fine-tuning pour les modèles sont disponibles dans les notebook :
 
 ## Conclusion
 Nous avons mis en place un chatbot qui vérifie si la news qu'on lui donne est vraie ou fausse. 
-Pour cela, il vérifie plusieurs points tels que le ton de l'info, la source ou même la cohérence de l'info (en vérifiant d'autres sources).
+Pour cela, il vérifie plusieurs points tels que le **ton** de l'info, la **source** ou même la **cohérence** de l'info (en vérifiant d'autres sources).
 Le modèle a été fine-tuned à partir d'un dataset répertoriant des news, vraies ou fausses.
 
-Enfin, nous avons choisi de prendre la **version 2** du modèle car elle est plus précise, malgré le fait que le bot ne termine pas toujours ses phrases.
-
+Enfin, nous avons choisi de prendre la **version 2** du modèle car elle est plus précise, malgré le fait que le bot ne termine pas toujours ses phrases. Quelques exemples d'exécution sont disponibles dans le dossier [/exemples](./exemples/).
 Pour améliorer le modèle, il faudrait retravailler le jeu de données pour raccourcir les inputs et outputs, notamment pour que le bot puisse faire des phrases complètes.
