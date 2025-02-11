@@ -14,7 +14,7 @@ Nom du groupe : BFMTV-bg
 L'application se présente sous la forme d'une interface de chat textuel, similaire aux LLMs actuels tels que ChatGPT, Le Chat etc.
 
 Pour cette interface, nous utilisons la librairie Python [**Gradio**](https://www.gradio.app/).
-Le code de l'interface est disponible dans le fichier [app.py](./app.py).
+Le code de l'interface est disponible dans le fichier [app.py](./app.py) et utilise la version 2 de notre modèle.
 
 ### Dataset
 #### Dataset 1
@@ -42,12 +42,18 @@ Le projet est poussé sur un dépôt Hugging Face, sous 2 versions :
 - V1 : [Gor-bepis/fact-checker-bfmtg-v1](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v1)
 - V2 : [Gor-bepis/fact-checker-bfmtg-v2](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v2)
 
+Il est automatiquement poussé sur le dépôt via une cellule du notebook :
+```py
+model.push_to_hub("Gor-bepis/fact-checker-bfmtg-v2")
+tokenizer.push_to_hub("Gor-bepis/fact-checker-bfmtg-v2")
+```
+
 L'API d'Inférence ne semble pas marcher cependant, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
 
 ### Fine-tuning
-Le modèle V1 est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-1).
+Le modèle **V1** est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-1).
 
-Le modèle V2 est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-2).
+Le modèle **V2** est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset-2). Nous avons baissé le learning rate à 0.0001 car le modèle avait tendance à sur-apprendre. Nous avons également augmenté le nombre d'étapes, de 1000 à 1500 pour améliorer ses performances.
 
 Le code du fine-tuning pour les modèles sont disponibles dans les notebook :
 - V1 : [bftmtv-bg-kaggle](./bfmtv-bg-kaggle.ipynb)
@@ -58,4 +64,6 @@ Nous avons mis en place un chatbot qui vérifie si la news qu'on lui donne est v
 Pour cela, il vérifie plusieurs points tels que le ton de l'info, la source ou même la cohérence de l'info (en vérifiant d'autres sources).
 Le modèle a été fine-tuned à partir d'un dataset répertoriant des news, vraies ou fausses.
 
-Enfin, nous avons choisi de prendre la version 2 du modèle car elle est plus précise, malgré le fait que le bot ne termine pas toujours ses phrases.
+Enfin, nous avons choisi de prendre la **version 2** du modèle car elle est plus précise, malgré le fait que le bot ne termine pas toujours ses phrases.
+
+Pour améliorer le modèle, il faudrait retravailler le jeu de données pour raccourcir les inputs et outputs, notamment pour que le bot puisse faire des phrases complètes.
