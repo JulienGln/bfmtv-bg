@@ -25,10 +25,12 @@ Le code de l'interface est disponible dans le fichier [app.py](./app.py).
 
 ### Fine-tuning
 Le modèle est ajusté (fine-tuning) à partir du dataset décrit [ci-dessus](#dataset).
-Le code est du fine-tuning est disponible dans le notebook [bftmtv-bg-kaggle](./bfmtv-bg-kaggle.ipynb).
+Le code du fine-tuning est disponible dans le notebook [bftmtv-bg-kaggle](./bfmtv-bg-kaggle.ipynb).
 
 ### Déploiement
-Le projet est poussé sur un dépôt Hugging Face : [Gor-bepis/fact-checker-bfmtg-v1](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v1)
+Le projet est poussé sur un dépôt Hugging Face, sous 2 versions : 
+- V1 : [Gor-bepis/fact-checker-bfmtg-v1](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v1)
+- V2 : [Gor-bepis/fact-checker-bfmtg-v2](https://huggingface.co/Gor-bepis/fact-checker-bfmtg-v2)
 
 L'API d'Inférence ne semble pas marché cependant, même si le modèle est utilisable en local (cf. [app.py](./app.py)).
 
