@@ -10,35 +10,6 @@ login("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")
 
 client = InferenceClient()
 
-
-def chat(input: str, history: list[tuple[str, str]]):
-    messages = []
-
-    # gestion de l'historique
-    for couple in history:
-        messages.append({"role": couple["role"], "content": couple["content"]})
-
-    # resp = input[::-1]
-    
-    messages.append({"role": "user", "content": input})
-
-    chat_completion = client.chat.completions.create(
-        model="Gor-bepis/fact-checker-bfmtg-v2",
-        stream=True,
-        messages=messages,
-        max_tokens=1024
-    )
-
-    partial_message = ""
-    for token in chat_completion:
-        content = token.choices[0].delta.content
-        if token.choices[0].finish_reason is not None:
-            break
-        partial_message += content
-        yield partial_message
-
-    # return resp
-
 checkpoint = "Gor-bepis/fact-checker-bfmtg-v2"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
