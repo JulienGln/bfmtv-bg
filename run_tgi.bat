@@ -2,7 +2,7 @@
 setlocal
 
 REM Define variables
-set "model=teknium/OpenHermes-2.5-Mistral-7B"
+set "model=Gor-bepis/fact-checker-bfmtg-v2"
 set "volume=%cd%\data"
 
 REM Attempt to run with GPU support
